@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "amount": 200,
+    "conversation_type": "Debit",
+    "created_at": "2020-06-11T19:11:24+00:00",
+    "transaction_id": 10,
+    "pan": "4080230386144446",
+    "transaction_category": "Grocery",
+    "posted_timestamp": "2020-06-11T19:11:24+00:00",
+    "transaction_type": "POS",
+    "sending_account": 39203,
+    "receiving_account": 993020,
+    "transaction_note": "Merchant 00308281"
+  },
+  {
+    "id": 2,
+    "amount": 499,
+    "conversation_type": "Credit",
+    "created_at": "2020-06-11T19:11:24+00:00",
+    "transaction_id": 12,
+    "pan": "5166697943434128",
+    "transaction_category": "Food and Beverage",
+    "posted_timestamp": "2020-06-11T19:11:25+00:00",
+    "transaction_type": "POS",
+    "sending_account": 39400,
+    "receiving_account": 9233020,
+    "transaction_note": "Jimmys Corn and Cheese refund"
+  },
+  {
+    "id": 3,
+    "amount": 20000,
+    "conversation_type": "Debit",
+    "created_at": "2020-06-11T19:11:24+00:00",
+    "transaction_id": 17,
+    "pan": "5488452462266852",
+    "transaction_category": "ATM",
+    "posted_timestamp": "2020-06-11T19:11:26+00:00",
+    "transaction_type": "POS",
+    "sending_account": 99302,
+    "receiving_account": 11209,
+    "transaction_note": "ATM #39902 Burrard Street"
+  }
+]
