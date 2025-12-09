@@ -1,26 +1,44 @@
-# Synctera Tech challenge
+# Synctera Tech Challenge
 
-Context: 
-This challenge is running in a simulated environment and is using a simple one file approach to understand how you think about and solve problems. The boundaries are that the results need to be accessible via curl, the code needs to compile and run within this environment, and the instructions to get the results should be clear. 
+## Problem statement
+The starter server exposed a `/transactions` endpoint that returned hard-coded mock data from memory. The challenge asks for a production-like shape where transaction data is ingested from a JSON file chosen at runtime, PANs are masked to the last four digits in all responses, transactions can be returned ordered by descending posted timestamp, tests accompany the behavior, and documentation explains how to build, test, and run the service.
 
-## Objectives
+## What changed and why
+- Added JSON file ingestion so the API can be pointed at external mock transaction data via `--transactions <file>`.
+- Implemented consistent PAN masking to return only the last four digits and protect sensitive card information.
+- Added a `/transactions/posted-desc` endpoint to provide transactions sorted by `posted_timestamp` in descending order.
+- Wrote unit tests for the masking logic and both transaction endpoints to guard the behavior.
+- Documented build, test, and run steps for clarity.
 
-This challenge has two components: written and code. For the written, create a well formatted markdown document outlining your responses. Point form and succinct responses are valued.
+## How this differs from real-world services
+- The service is intentionally minimal and runs in a single file; a production service would likely include structured logging, validation, layered architecture, error handling contracts, observability hooks, configuration management, and persistent storage.
+- Authentication and authorization are omitted; real APIs would protect transaction data.
+- The JSON file acts as a mock data store instead of a database or downstream service.
 
-### Written
-- Review the existing code, what is the work that needs to be done in your opinion? How does this mock up / challenge exercise differ from what you would expect to see in the 'real world'? 
-- Also use this document to highlight what you have done in the code (and why)
-
-## Code
-Please complete the following and build/test in this simulated environment
-- Right now the project uses mock data, please externalize this so that the program can injest a JSON file as a source of mock transactions
-- Add a command line option to be able to specify the data source, e.g: 
+## Build, test, and run
+### Build
+```bash
+make build
 ```
-./main --transactions transactions.json
+
+### Test
+```bash
+make test
 ```
-- Instead of displaying the PAN with GetTransactions it is preferred to only display the last four digits and replace the rest of the PAN with `*`; create a function to achieve this and ensure that all output is handled in this way
-- Create an endpoint that returns the transactions ordered by descending posted_timestamp 
-- Create a test for GetTransactions and your new functions
-- Provide documentation for how to build, test, run your project
 
+### Run
+Use the default mock data file:
+```bash
+./main
+```
 
+Or point to a specific data source:
+```bash
+./main --transactions path/to/transactions.json
+```
+
+Then query the API:
+```bash
+curl http://localhost:8000/transactions
+curl http://localhost:8000/transactions/posted-desc
+```
